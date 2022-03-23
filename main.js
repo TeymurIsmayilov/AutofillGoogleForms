@@ -60,7 +60,7 @@ async function createLink () {
     let splitted = document.location.pathname.split('/');
     let query = "";
     Object.keys(data).forEach(key => {
-      query += `&${key}=${data[key]}`
+      query += `&${key}=${encodeURIComponent(data[key])}`
     });
     newlinka.setAttribute('href', `https://docs.google.com/forms/u/${splitted[3]}/d/e/${splitted[6]}/viewform?usp=pp_url${query}`);
     newlinka.innerHTML = "Отправить еще один ответ с автозаполнением";
@@ -70,27 +70,9 @@ async function createLink () {
     [...document.querySelectorAll('[role="heading"')][0].parentElement.appendChild(newlink);
   }
 }
-async function createLink2 () {
-  console.log('createLink2');
-  let data = await browser.storage.local.get();
-  if (Object.keys(data).length > 0) {
-    let applyfill = document.createElement('div');
-    applyfill.className = "applyfill";
-    applyfill.innerHTML = "Применить автозаполнение";
-    let splitted = document.location.pathname.split('/');
-    let query = "";
-    Object.keys(data).forEach(key => {
-        query += `&${key}=${data[key]}`;
-    });
-    applyfill.setAttribute('data', `https://docs.google.com/forms/d/e/${splitted[4]}/viewform?usp=pp_url${query}`);
-    applyfill.addEventListener("click", onclick, false);
-    document.getElementsByTagName("form")[0].appendChild(applyfill);
-  }
-}
 function onclick (event) {
   location.href = event.target.getAttribute('data');
 }
 if ([...document.querySelectorAll('[role="list"]')][0] && [...document.querySelectorAll('[role="list"]')][0].children.length > 0 && elements.length > 0) start()
-else if (document.getElementsByTagName("form").length > 0) createLink2();
-else if ([...document.querySelectorAll('[role="heading"')].length > 0) createLink();
+else if (!(document.getElementsByTagName("form").length > 0) &&[...document.querySelectorAll('[role="heading"')].length > 0) createLink();
 // https://docs.google.com/forms/d/e/*/viewform?usp=pp_url&entry.609516594=Az-Forward

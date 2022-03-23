@@ -28,20 +28,3 @@
 	z-index: 1;
   display: none;
 }
-.applyfill {
-	text-align: center;
-	margin: 20px;
-	padding: 15px;
-	background: #fff;
-	border-radius: 100px;
-	color: rgb(103, 58, 183);
-	font-size: 20px;
-	cursor: pointer;
-	outline: 2px solid rgb(103, 58, 183);
-	box-sizing: border-box;
-	transition: all .16s .04s;
-}
-.applyfill:hover {
-	outline-color: rgb(103, 58, 183);
-	outline-width: 5px;
-}
