@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "AGF",
-  "version": "0.8",
+  "version": "0.9",
   "description": "Autofill Google Forms",
   "icons": {
     "48": "icons/agf.png"
